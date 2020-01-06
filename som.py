@@ -62,7 +62,7 @@ colorbar()
 markers = ["o", "s"]
 colors = ["r", "g"]
 
-for i, x in enumerate(X): # i is the indecies of the customer, x is the vector of customer information
+for i, x in enumerate(X): # i is the indicies of the customer, x is the vector of customer information
     # get the winning node of customer x
     w = som.winner(x)
 
@@ -73,3 +73,15 @@ for i, x in enumerate(X): # i is the indecies of the customer, x is the vector o
 
 # display the plot
 show()
+
+# ok let's find the actual customers who are the frauds
+# get the mapping from winning nodes to customers from minisom
+
+# get the mapping from data to winning nodes (mapping is a dictionary)
+mappings = som.win_map(X)
+
+# when doing this in jupyter notebook, we read the map and then get the coordinates that are white
+# for example, if the white coords are (8, 1) (6, 8)
+frauds = np.concatenate((mappings[(8, 1)], mappings[(6, 8)]), axis=0)
+
+print(frauds)
